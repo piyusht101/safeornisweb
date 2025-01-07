@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safeornis Intro Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #0f2027,
+          #203a43,
+          #2c5364
+        ); /* Gradient for a modern look */
+        overflow: hidden;
+        font-family: "Jost", Arial, sans-serif;
+      }
+
+      /* Laptop structure */
+      .laptop {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        background: #3a3d40; /* Dark grey for modern style */
+        border-radius: 12px;
+        transform-origin: bottom center;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6),
+          inset 0 0 15px rgba(255, 255, 255, 0.1);
+        animation: openLaptop 2s ease-in-out forwards;
+      }
+
+      /* Laptop screen */
+      .screen {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          #222,
+          #111
+        ); /* Subtle screen gradient */
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Safeornis logo image */
+      .logo-img {
+        width: 80px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        animation: logoAppear 1.5s 1s forwards;
+        filter: drop-shadow(0 0 10px #00f0ff); /* Glowing effect */
+      }
+
+      /* Safeornis company name */
+      .logo-text {
+        font-size: 2.2rem;
+        color: #fff;
+        opacity: 0;
+        font-weight: bold;
+        text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+        position: relative;
+        z-index: 2;
+        animation: textAppear 1s 2.5s forwards, zoomInLogo 1.5s 3.5s forwards;
+      }
+
+      /* Laptop bottom (keyboard) */
+      .keyboard {
+        position: absolute;
+        width: 320px;
+        height: 20px;
+        background: linear-gradient(180deg, #555, #333); /* Subtle gradient */
+        bottom: -20px;
+        left: 0;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Flash effect */
+      .flash {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        opacity: 0;
+        z-index: 3;
+        animation: flashEffect 0.5s 4.5s forwards;
+      }
+
+      /* Splash effect */
+      .splash {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(circle, #0ff, #003);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: 3;
+        animation: splashEffect 0.5s 4.5s forwards;
+      }
+
+      /* Laptop opening animation */
+      @keyframes openLaptop {
+        0% {
+          transform: rotateX(90deg);
+        }
+        100% {
+          transform: rotateX(0deg);
+        }
+      }
+
+      /* Logo image appear animation */
+      @keyframes logoAppear {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      /* Logo text appear animation */
+      @keyframes textAppear {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* Logo zoom in */
+      @keyframes zoomInLogo {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(6);
+        }
+      }
+
+      /* Splash effect */
+      @keyframes splashEffect {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(10);
+          opacity: 0;
+        }
+      }
+
+      /* Flash effect */
+      @keyframes flashEffect {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Responsive design for mobile */
+      @media screen and (max-width: 480px) {
+        .laptop {
+          width: 220px;
+          height: 140px;
+        }
+
+        .logo-text {
+          font-size: 1.5rem;
+        }
+
+        .keyboard {
+          width: 220px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .laptop {
+          width: 280px;
+          height: 180px;
+        }
+
+        .keyboard {
+          width: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Laptop with logo and splash effects -->
+    <div class="laptop">
+      <div class="screen">
+        <img src="./images/SO logo.jpg" alt="Safeornis Logo" class="logo-img" />
+        <div class="logo-text">Safeornis</div>
+        <div class="splash"></div>
+      </div>
+      <div class="keyboard"></div>
+    </div>
+
+    <div class="flash"></div>
+
+    <script>
+      // Redirect after the animation is completed
+      setTimeout(function () {
+        window.location.href = "main.html"; // Ensure this URL is correct
+      }, 4800); // Adjusted for smoother transition
+    </script>
+  </body>
+</html>
